@@ -2,9 +2,9 @@
 (function() {
     // Download URLs - update these with your actual hosting URLs
     const DOWNLOAD_URLS = {
-        windows: 'https://github.com/delanoklee/acuity/releases/latest/download/acuity-windows-x64.zip',
-        mac: 'https://github.com/delanoklee/acuity/releases/latest/download/acuity-macos-x64.dmg',
-        linux: 'https://github.com/delanoklee/acuity/releases/latest/download/acuity-linux-x64.tar.gz'
+        windows: 'https://github.com/delanoklee/aquwity/releases/latest/download/acuity-windows-x64.zip',
+        mac: 'https://github.com/delanoklee/aquwity/releases/latest/download/acuity-macos-x64.dmg',
+        linux: 'https://github.com/delanoklee/aquwity/releases/latest/download/acuity-linux-x64.tar.gz'
     };
 
     // Detect OS
