@@ -17,19 +17,16 @@ jobs:
         run: pip install -r requirements.txt
       - name: Build with PyInstaller
         run: pyinstaller --clean acuity.spec
-      - name: Package
+      - name: Install Inno Setup
+        run: choco install innosetup -y
+      - name: Create Windows Installer
         run: |
-          mkdir dist/acuity-windows
-          xcopy /E /I dist\Acuity dist\acuity-windows\Acuity
-          copy .env.example dist\acuity-windows\
-          copy README.md dist\acuity-windows\
-          copy QUICKSTART.md dist\acuity-windows\
-          cd dist
-          powershell Compress-Archive -Path acuity-windows -DestinationPath acuity-windows-x64.zip -Force
+          & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" installer\windows_installer.iss
+        shell: pwsh
       - uses: actions/upload-artifact@v4
         with:
           name: windows-build
-          path: dist/acuity-windows-x64.zip
+          path: dist/AcuitySetup.exe
 
   build-macos:
     runs-on: macos-latest
@@ -103,13 +100,16 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            artifacts/windows-build/acuity-windows-x64.zip
+            artifacts/windows-build/AcuitySetup.exe
             artifacts/linux-build/acuity-linux-x64.tar.gz
           draft: false
           prerelease: false
           body: |
-            ## Acuity v1.0.0
+            ## Acuity v1.0.1
 
             AI-powered focus tracker. Download for your platform below.
+
+            **Windows**: Download `AcuitySetup.exe` and double-click to install!
+            **Linux**: Extract and run `./run.sh`
 
             **Note**: macOS build coming soon!
