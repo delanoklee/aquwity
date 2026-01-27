@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acuity - AI-Powered Focus Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>Acuity</h1>
+                <p class="tagline">Stay focused on what matters</p>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero">
+                <h2>AI-Powered Focus Tracking</h2>
+                <p class="subtitle">
+                    Acuity automatically monitors your screen activity and uses AI
+                    to help you stay focused on your daily priorities.
+                </p>
+
+                <div class="download-section">
+                    <button id="primary-download" class="btn btn-primary">
+                        <svg class="download-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <span id="download-text">Download for Windows</span>
+                    </button>
+
+                    <div class="other-platforms">
+                        <span>Download for:</span>
+                        <a href="#" id="download-windows" class="platform-link">Windows</a>
+                        <a href="#" id="download-mac" class="platform-link">macOS</a>
+                        <a href="#" id="download-linux" class="platform-link">Linux</a>
+                    </div>
+                </div>
+
+                <p class="free-notice">✨ Free to use - requires Anthropic API key</p>
+            </section>
+
+            <section class="features">
+                <h3>How it Works</h3>
+                <div class="feature-grid">
+                    <div class="feature">
+                        <div class="feature-icon">📸</div>
+                        <h4>Automatic Screenshots</h4>
+                        <p>Captures your screen every 5 minutes</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🤖</div>
+                        <h4>AI Analysis</h4>
+                        <p>Claude AI determines if you're on-task</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">📊</div>
+                        <h4>Daily Reports</h4>
+                        <p>See your focus percentage and activity</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🔒</div>
+                        <h4>Privacy Focused</h4>
+                        <p>Screenshots analyzed and deleted, not stored</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="setup">
+                <h3>Quick Setup (2 minutes)</h3>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Download Acuity</h4>
+                            <p>Click the button above to download for your platform</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Get API Key</h4>
+                            <p>Sign up at <a href="https://console.anthropic.com/" target="_blank">console.anthropic.com</a> and get your free API key</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Launch & Configure</h4>
+                            <p>Run Acuity, paste your API key, and start tracking!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="faq">
+                <h3>FAQ</h3>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h4>Is Acuity really free?</h4>
+                        <p>Yes! The app is free. You only pay for the AI analysis through Anthropic's API (~$1.50/day for an 8-hour workday).</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>How does it protect my privacy?</h4>
+                        <p>Screenshots are sent to Claude AI for analysis, then immediately deleted. Only the analysis results are stored locally.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>What's an API key?</h4>
+                        <p>It's like a password that lets Acuity use Claude AI to analyze your screenshots. You get one from Anthropic in 2 minutes.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Can I adjust the screenshot interval?</h4>
+                        <p>Yes! The default is 5 minutes, but you can change it in the settings to reduce costs or increase monitoring frequency.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Acuity. Open source focus tracker.</p>
+            <p>
+                <a href="https://github.com/delanoklee/aquwity" target="_blank">GitHub</a> |
+                <a href="https://console.anthropic.com/" target="_blank">Get API Key</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
