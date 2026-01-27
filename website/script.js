@@ -4,7 +4,7 @@
     const DOWNLOAD_URLS = {
         windows: 'https://github.com/delanoklee/aquwity/releases/latest/download/AcuitySetup.exe',
         mac: null, // macOS build coming soon
-        linux: 'https://github.com/delanoklee/aquwity/releases/latest/download/acuity-linux-x64.tar.gz'
+        linux: 'https://github.com/delanoklee/aquwity/releases/latest/download/Acuity-x86_64.AppImage'
     };
 
     // Detect OS
