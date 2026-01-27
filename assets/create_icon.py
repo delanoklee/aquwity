@@ -40,7 +40,11 @@ def create_icon(size=512):
     try:
         # Try to use a system font
         font_size = size // 2
-        font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", font_size)
+        # Try Windows font first, then Linux
+        try:
+            font = ImageFont.truetype("C:\\Windows\\Fonts\\arialbd.ttf", font_size)
+        except:
+            font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", font_size)
     except:
         # Fallback to default font
         font = ImageFont.load_default()

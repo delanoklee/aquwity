@@ -1,6 +1,8 @@
 # -*- mode: python ; coding: utf-8 -*-
 # PyInstaller spec file for Acuity
 
+import os
+
 block_cipher = None
 
 a = Analysis(
@@ -52,7 +54,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon='assets/icon.ico',  # Windows icon
+    icon='assets/icon.ico' if os.path.exists('assets/icon.ico') else None,  # Windows icon
 )
 
 # For macOS, create an app bundle
