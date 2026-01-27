@@ -1,0 +1,110 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Build with PyInstaller
+        run: pyinstaller --clean acuity.spec
+      - name: Package
+        run: |
+          mkdir dist/acuity-windows
+          xcopy /E /I dist\Acuity dist\acuity-windows\Acuity
+          copy .env.example dist\acuity-windows\
+          copy README.md dist\acuity-windows\
+          copy QUICKSTART.md dist\acuity-windows\
+          cd dist
+          powershell Compress-Archive -Path acuity-windows -DestinationPath acuity-windows-x64.zip -Force
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-build
+          path: dist/acuity-windows-x64.zip
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Build with PyInstaller
+        run: pyinstaller --clean acuity.spec
+      - name: Package
+        run: |
+          mkdir -p dist/acuity-macos
+          cp -r dist/Acuity.app dist/acuity-macos/
+          cp .env.example dist/acuity-macos/
+          cp README.md dist/acuity-macos/
+          cp QUICKSTART.md dist/acuity-macos/
+          cd dist
+          hdiutil create -volname "Acuity" -srcfolder acuity-macos -ov -format UDZO acuity-macos-x64.dmg
+      - uses: actions/upload-artifact@v4
+        with:
+          name: macos-build
+          path: dist/acuity-macos-x64.dmg
+
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Install system dependencies
+        run: sudo apt-get install -y python3-tk
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+      - name: Build with PyInstaller
+        run: pyinstaller --clean acuity.spec
+      - name: Package
+        run: |
+          mkdir -p dist/acuity-linux
+          cp -r dist/Acuity dist/acuity-linux/
+          cp .env.example dist/acuity-linux/
+          cp README.md dist/acuity-linux/
+          cp QUICKSTART.md dist/acuity-linux/
+          cat > dist/acuity-linux/run.sh << 'EOF'
+          #!/bin/bash
+          cd "$(dirname "$0")"
+          ./Acuity/Acuity
+          EOF
+          chmod +x dist/acuity-linux/run.sh
+          cd dist
+          tar -czf acuity-linux-x64.tar.gz acuity-linux/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: linux-build
+          path: dist/acuity-linux-x64.tar.gz
+
+  create-release:
+    needs: [build-windows, build-macos, build-linux]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            artifacts/windows-build/acuity-windows-x64.zip
+            artifacts/macos-build/acuity-macos-x64.dmg
+            artifacts/linux-build/acuity-linux-x64.tar.gz
+          draft: false
+          prerelease: false
