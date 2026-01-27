@@ -3,7 +3,7 @@
     // Download URLs - update these with your actual hosting URLs
     const DOWNLOAD_URLS = {
         windows: 'https://github.com/delanoklee/aquwity/releases/latest/download/acuity-windows-x64.zip',
-        mac: 'https://github.com/delanoklee/aquwity/releases/latest/download/acuity-macos-x64.dmg',
+        mac: null, // macOS build coming soon
         linux: 'https://github.com/delanoklee/aquwity/releases/latest/download/acuity-linux-x64.tar.gz'
     };
 
@@ -42,29 +42,23 @@
     // Set primary download button
     downloadText.textContent = `Download for ${getOSName(detectedOS)}`;
     primaryDownloadBtn.onclick = function() {
-        window.location.href = DOWNLOAD_URLS[detectedOS];
+        if (DOWNLOAD_URLS[detectedOS]) {
+            window.location.href = DOWNLOAD_URLS[detectedOS];
+        } else {
+            alert('macOS build coming soon! Please check back later or download for Windows/Linux.');
+        }
     };
 
     // Set platform links
     document.getElementById('download-windows').href = DOWNLOAD_URLS.windows;
-    document.getElementById('download-mac').href = DOWNLOAD_URLS.mac;
+    document.getElementById('download-mac').href = DOWNLOAD_URLS.mac || '#';
     document.getElementById('download-linux').href = DOWNLOAD_URLS.linux;
 
     // Add click handlers for platform links to prevent default if no URL
-    document.querySelectorAll('.platform-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-            if (this.href.includes('yourusername')) {
-                e.preventDefault();
-                alert('Download not yet available. Please build the app using the build scripts first!');
-            }
-        });
-    });
-
-    // Same for primary button
-    if (DOWNLOAD_URLS[detectedOS].includes('yourusername')) {
-        primaryDownloadBtn.onclick = function(e) {
+    document.getElementById('download-mac').addEventListener('click', function(e) {
+        if (!DOWNLOAD_URLS.mac) {
             e.preventDefault();
-            alert('Download not yet available. Please build the app using the build scripts first!\n\nTo build:\n1. Run the appropriate build script from build_scripts/\n2. Upload the generated file to GitHub Releases or your hosting\n3. Update the URLs in script.js');
-        };
-    }
+            alert('macOS build coming soon! Please check back later.');
+        }
+    });
 })();

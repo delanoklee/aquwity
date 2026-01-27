@@ -90,7 +90,7 @@ jobs:
           path: dist/acuity-linux-x64.tar.gz
 
   create-release:
-    needs: [build-windows, build-macos, build-linux]
+    needs: [build-windows, build-linux]
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -104,7 +104,12 @@ jobs:
         with:
           files: |
             artifacts/windows-build/acuity-windows-x64.zip
-            artifacts/macos-build/acuity-macos-x64.dmg
             artifacts/linux-build/acuity-linux-x64.tar.gz
           draft: false
           prerelease: false
+          body: |
+            ## Acuity v1.0.0
+
+            AI-powered focus tracker. Download for your platform below.
+
+            **Note**: macOS build coming soon!
