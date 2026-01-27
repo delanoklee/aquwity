@@ -15,18 +15,12 @@ jobs:
           python-version: '3.10'
       - name: Install dependencies
         run: pip install -r requirements.txt
-      - name: Build with PyInstaller
-        run: pyinstaller --clean acuity.spec
-      - name: Install Inno Setup
-        run: choco install innosetup -y
-      - name: Create Windows Installer
-        run: |
-          & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" installer\windows_installer.iss
-        shell: pwsh
+      - name: Build single-file executable
+        run: pyinstaller --clean acuity_onefile.spec
       - uses: actions/upload-artifact@v4
         with:
           name: windows-build
-          path: dist/AcuitySetup.exe
+          path: dist/Acuity.exe
 
   build-macos:
     runs-on: macos-latest
@@ -127,7 +121,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            artifacts/windows-build/AcuitySetup.exe
+            artifacts/windows-build/Acuity.exe
             artifacts/linux-build/Acuity-x86_64.AppImage
           draft: false
           prerelease: false
@@ -136,7 +130,7 @@ jobs:
 
             AI-powered focus tracker. Download for your platform below.
 
-            **Windows**: Download `AcuitySetup.exe` and double-click to install!
+            **Windows**: Download `Acuity.exe` and double-click to run! (Single portable file)
             **Linux**: Download `Acuity-x86_64.AppImage`, make executable (`chmod +x Acuity-x86_64.AppImage`), and double-click to run!
 
             **Note**: macOS build coming soon!
