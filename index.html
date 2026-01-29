@@ -5,17 +5,33 @@
   <title>Acuity</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      height: 100%;
+      background: transparent;
+    }
     body {
-      background: #F6EAC9;
-      height: 100vh;
+      height: 100%;
+      background: #EDD9B6;
+      border-radius: 15px;
+      border: 2px solid #965A32;
+      overflow: hidden;
+    }
+    body {
       display: flex;
       align-items: center;
-      padding: 15px;
+      padding: 5px 10px;
       -webkit-app-region: drag;
     }
-    input {
+    .container {
+      display: flex;
+      align-items: center;
       width: 100%;
-      padding: 15px;
+      height: 100%;
+      gap: 10px;
+    }
+    input {
+      flex: 1;
+      padding: 10px;
       font-size: 18px;
       font-family: -apple-system, system-ui, sans-serif;
       border: none;
@@ -24,9 +40,18 @@
       color: #3B526B;
       -webkit-app-region: no-drag;
     }
+    img {
+      height: 100%;
+      width: auto;
+      object-fit: contain;
+      -webkit-app-region: no-drag;
+    }
   </style>
 </head>
 <body>
-  <input type="text" placeholder="Type here..." autofocus>
+  <div class="container">
+    <input type="text" placeholder="Type here..." autofocus>
+    <img src="icon.png" alt="logo">
+  </div>
 </body>
 </html>

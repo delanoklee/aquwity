@@ -18,8 +18,14 @@ function createWindow() {
     x: Math.round((screenWidth - windowWidth) / 2),
     y: 0,
     frame: false,
+    transparent: true,
+    backgroundColor: '#00000000',
+    hasShadow: false,
     resizable: true,
-    alwaysOnTop: true
+    alwaysOnTop: true,
+    webPreferences: {
+      contextIsolation: true
+    }
   })
 
   win.loadFile('index.html')
