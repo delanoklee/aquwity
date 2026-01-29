@@ -20,7 +20,7 @@
     "mac": {
       "category": "public.app-category.productivity",
       "target": "dmg",
-      "icon": "assets/icon.icns.png"
+      "icon": "assets/icon_512.png"
     },
     "dmg": {
       "title": "Acuity",
