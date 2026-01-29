@@ -8,30 +8,13 @@ block_cipher = None
 
 # Detect platform
 is_macos = sys.platform == 'darwin'
-is_windows = sys.platform == 'win32'
 
 a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[
-        ('.env.example', '.'),
-    ],
-    hiddenimports=[
-        'anthropic',
-        'PIL',
-        'PIL._tkinter_finder',
-        'mss',
-        'dotenv',
-        'apscheduler',
-        'apscheduler.schedulers.background',
-        'apscheduler.triggers.interval',
-        'imagehash',
-        'tkinter',
-        'tkinter.ttk',
-        'tkinter.messagebox',
-        'tkinter.scrolledtext',
-    ],
+    datas=[],
+    hiddenimports=['tkinter'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
@@ -45,7 +28,7 @@ a = Analysis(
 pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 
 if is_macos:
-    # macOS: Create folder-based app bundle (recommended approach)
+    # macOS: Create folder-based app bundle
     exe = EXE(
         pyz,
         a.scripts,
@@ -55,11 +38,11 @@ if is_macos:
         debug=False,
         bootloader_ignore_signals=False,
         strip=False,
-        upx=False,  # UPX can cause issues on macOS
+        upx=False,
         console=False,
         disable_windowed_traceback=False,
-        argv_emulation=True,  # Required for macOS GUI apps
-        target_arch=None,  # Build for host architecture
+        argv_emulation=True,
+        target_arch=None,
         codesign_identity=None,
         entitlements_file=None,
     )
@@ -79,12 +62,12 @@ if is_macos:
         coll,
         name='Acuity.app',
         icon='assets/icon.icns.png' if os.path.exists('assets/icon.icns.png') else None,
-        bundle_identifier='com.acuity.focustracker',
+        bundle_identifier='com.acuity.app',
         info_plist={
             'NSHighResolutionCapable': 'True',
             'LSMinimumSystemVersion': '10.13.0',
-            'CFBundleShortVersionString': '1.0.3',
-            'NSRequiresAquaSystemAppearance': 'False',  # Support dark mode
+            'CFBundleShortVersionString': '1.1.0',
+            'NSRequiresAquaSystemAppearance': 'False',
         },
     )
 else:

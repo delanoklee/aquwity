@@ -1,5 +1,5 @@
 # -*- mode: python ; coding: utf-8 -*-
-# PyInstaller spec file for Acuity - Single File Version
+# PyInstaller spec file for Acuity - Single File Version (Windows)
 
 import os
 
@@ -9,19 +9,8 @@ a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[
-        ('.env.example', '.'),
-    ],
-    hiddenimports=[
-        'anthropic',
-        'PIL',
-        'PIL._tkinter_finder',
-        'mss',
-        'dotenv',
-        'apscheduler',
-        'imagehash',
-        'tkinter',
-    ],
+    datas=[],
+    hiddenimports=['tkinter'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],

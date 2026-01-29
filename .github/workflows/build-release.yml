@@ -33,13 +33,10 @@ jobs:
         run: pip install -r requirements.txt
       - name: Build with PyInstaller
         run: pyinstaller --clean acuity.spec
-      - name: Package
+      - name: Package as DMG
         run: |
           mkdir -p dist/acuity-macos
           cp -r dist/Acuity.app dist/acuity-macos/
-          cp .env.example dist/acuity-macos/
-          cp README.md dist/acuity-macos/
-          cp QUICKSTART.md dist/acuity-macos/
           cd dist
           hdiutil create -volname "Acuity" -srcfolder acuity-macos -ov -format UDZO acuity-macos-x64.dmg
       - uses: actions/upload-artifact@v4
@@ -69,7 +66,7 @@ jobs:
           [Desktop Entry]
           Type=Application
           Name=Acuity
-          Comment=AI-powered focus tracker
+          Comment=Acuity App
           Exec=Acuity
           Icon=acuity
           Categories=Productivity;
@@ -131,8 +128,8 @@ jobs:
           body: |
             ## Acuity ${{ github.ref_name }}
 
-            AI-powered focus tracker. Download for your platform below.
+            Download for your platform below.
 
-            **Windows**: Download `Acuity.exe` and double-click to run! (Single portable file)
+            **Windows**: Download `Acuity.exe` and double-click to run!
             **macOS**: Download `acuity-macos-x64.dmg`, open the DMG, and drag Acuity to Applications!
-            **Linux**: Download `Acuity-x86_64.AppImage`, make executable (`chmod +x Acuity-x86_64.AppImage`), and double-click to run!
+            **Linux**: Download `Acuity-x86_64.AppImage`, make executable (`chmod +x`), and run!
