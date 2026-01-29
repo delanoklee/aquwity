@@ -110,7 +110,7 @@ jobs:
           path: dist/Acuity-x86_64.AppImage
 
   create-release:
-    needs: [build-windows, build-linux]
+    needs: [build-windows, build-macos, build-linux]
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -124,15 +124,15 @@ jobs:
         with:
           files: |
             artifacts/windows-build/Acuity.exe
+            artifacts/macos-build/acuity-macos-x64.dmg
             artifacts/linux-build/Acuity-x86_64.AppImage
           draft: false
           prerelease: false
           body: |
-            ## Acuity v1.0.1
+            ## Acuity ${{ github.ref_name }}
 
             AI-powered focus tracker. Download for your platform below.
 
             **Windows**: Download `Acuity.exe` and double-click to run! (Single portable file)
+            **macOS**: Download `acuity-macos-x64.dmg`, open the DMG, and drag Acuity to Applications!
             **Linux**: Download `Acuity-x86_64.AppImage`, make executable (`chmod +x Acuity-x86_64.AppImage`), and double-click to run!
-
-            **Note**: macOS build coming soon!

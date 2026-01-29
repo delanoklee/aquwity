@@ -61,6 +61,6 @@ exe = EXE(
 app = BUNDLE(
     exe,
     name='Acuity.app',
-    icon=None,
+    icon='assets/icon.icns.png' if os.path.exists('assets/icon.icns.png') else None,
     bundle_identifier='com.acuity.focustracker',
 )

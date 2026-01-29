@@ -3,7 +3,7 @@
     // Download URLs - update these with your actual hosting URLs
     const DOWNLOAD_URLS = {
         windows: 'https://github.com/delanoklee/aquwity/releases/latest/download/Acuity.exe',
-        mac: null, // macOS build coming soon
+        mac: 'https://github.com/delanoklee/aquwity/releases/latest/download/acuity-macos-x64.dmg',
         linux: 'https://github.com/delanoklee/aquwity/releases/latest/download/Acuity-x86_64.AppImage'
     };
 
@@ -42,23 +42,11 @@
     // Set primary download button
     downloadText.textContent = `Download for ${getOSName(detectedOS)}`;
     primaryDownloadBtn.onclick = function() {
-        if (DOWNLOAD_URLS[detectedOS]) {
-            window.location.href = DOWNLOAD_URLS[detectedOS];
-        } else {
-            alert('macOS build coming soon! Please check back later or download for Windows/Linux.');
-        }
+        window.location.href = DOWNLOAD_URLS[detectedOS];
     };
 
     // Set platform links
     document.getElementById('download-windows').href = DOWNLOAD_URLS.windows;
-    document.getElementById('download-mac').href = DOWNLOAD_URLS.mac || '#';
+    document.getElementById('download-mac').href = DOWNLOAD_URLS.mac;
     document.getElementById('download-linux').href = DOWNLOAD_URLS.linux;
-
-    // Add click handlers for platform links to prevent default if no URL
-    document.getElementById('download-mac').addEventListener('click', function(e) {
-        if (!DOWNLOAD_URLS.mac) {
-            e.preventDefault();
-            alert('macOS build coming soon! Please check back later.');
-        }
-    });
 })();
