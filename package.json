@@ -13,7 +13,8 @@
   "build": {
     "appId": "com.acuity.app",
     "mac": {
-      "target": "dmg"
+      "target": "dmg",
+      "artifactName": "Acuity.dmg"
     }
   }
 }
