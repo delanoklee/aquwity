@@ -13,34 +13,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Python and tkinter via Homebrew
-        run: |
-          brew install python-tk@3.12
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
       - name: Install dependencies
-        run: |
-          python3 -m pip install --upgrade pip
-          python3 -m pip install pyinstaller
+        run: npm install
 
-      - name: Build with PyInstaller
-        run: python3 -m PyInstaller --clean acuity.spec
-
-      - name: Package as DMG
-        run: |
-          mkdir -p dist/acuity-macos
-          cp -r dist/Acuity.app dist/acuity-macos/
-          cd dist
-          hdiutil create -volname "Acuity" -srcfolder acuity-macos -ov -format UDZO acuity-macos-x64.dmg
+      - name: Build DMG
+        run: npm run build:dmg
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          files: dist/acuity-macos-x64.dmg
+          files: dist/*.dmg
           draft: false
           prerelease: false
           body: |
             ## Acuity ${{ github.ref_name }}
 
-            **macOS**: Download `acuity-macos-x64.dmg`, open the DMG, and drag Acuity to Applications.
+            **macOS**: Download the DMG, open it, and drag Acuity to Applications.
 
             First time opening: Right-click the app and select "Open" to bypass Gatekeeper.
