@@ -13,6 +13,7 @@
   },
   "build": {
     "appId": "com.acuity.app",
+    "icon": "icon.png",
     "mac": {
       "target": "dmg",
       "artifactName": "Acuity.dmg"
