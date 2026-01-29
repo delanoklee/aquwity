@@ -12,27 +12,62 @@
       color: #3B526B;
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: 2rem;
     }
-    .container { text-align: center; }
-    h1 { font-size: 3rem; margin-bottom: 2rem; }
-    a {
-      display: inline-block;
+    .logo {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 1.5rem;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .tagline {
+      font-size: 1.2rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.8;
+    }
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
       background: #3B526B;
       color: #EDD9B6;
-      padding: 1rem 2rem;
-      border-radius: 8px;
+      padding: 1rem 2.5rem;
+      border-radius: 12px;
       text-decoration: none;
       font-weight: 600;
+      font-size: 1.1rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 12px rgba(59, 82, 107, 0.3);
     }
-    a:hover { opacity: 0.9; }
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(59, 82, 107, 0.4);
+    }
+    .download-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+    .platform {
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      opacity: 0.6;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Acuity</h1>
-    <a href="https://github.com/delanoklee/aquwity/releases/latest/download/Acuity.dmg">Download for macOS</a>
-  </div>
+  <img src="icon.png" alt="Acuity" class="logo">
+  <h1>Acuity</h1>
+  <p class="tagline">Your desktop companion</p>
+  <a href="https://github.com/delanoklee/aquwity/releases/latest/download/Acuity.dmg" class="download-btn">
+    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+    Download for macOS
+  </a>
+  <p class="platform">macOS 10.13 or later</p>
 </body>
 </html>
