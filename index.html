@@ -1,37 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acuity - Download</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Acuity</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, system-ui, sans-serif;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 15px;
+      -webkit-app-region: drag;
+    }
+    input {
+      width: 100%;
+      padding: 15px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      background: rgba(30, 30, 30, 0.95);
+      color: white;
+      outline: none;
+      -webkit-app-region: no-drag;
+    }
+    input::placeholder { color: rgba(255,255,255,0.4); }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">
-                <h1>Acuity</h1>
-            </div>
-        </header>
-
-        <main>
-            <section class="hero">
-                <div class="download-section">
-                    <a href="https://github.com/delanoklee/aquwity/releases/latest/download/acuity-macos-x64.dmg" class="btn btn-primary">
-                        <svg class="download-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="7 10 12 15 17 10"></polyline>
-                            <line x1="12" y1="15" x2="12" y2="3"></line>
-                        </svg>
-                        <span>Download for macOS</span>
-                    </a>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <p><a href="https://github.com/delanoklee/aquwity" target="_blank">GitHub</a></p>
-        </footer>
-    </div>
+  <input type="text" placeholder="Type here..." autofocus>
+  <script>
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') window.close()
+    })
+  </script>
 </body>
 </html>

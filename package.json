@@ -1,28 +1,19 @@
 {
   "name": "acuity",
-  "version": "1.2.2",
-  "description": "Acuity",
+  "version": "2.0.0",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder --mac"
+    "dist": "electron-builder"
   },
-  "author": "",
-  "license": "MIT",
   "devDependencies": {
-    "electron": "^28.0.0",
-    "electron-builder": "^24.9.1"
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.4"
   },
   "build": {
     "appId": "com.acuity.app",
-    "productName": "Acuity",
     "mac": {
-      "category": "public.app-category.productivity"
-    },
-    "files": [
-      "main.js",
-      "preload.js",
-      "app/**/*"
-    ]
+      "target": "dmg"
+    }
   }
 }
